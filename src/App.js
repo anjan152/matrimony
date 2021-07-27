@@ -11,7 +11,7 @@ import  {LoginPage} from "./custom_screens/login"
 import  {RegistrationPage} from "./custom_screens/registration"
 import  {SearchPage} from "./custom_screens/search"
 import  {CustomNavbar} from "./custom_screens/custom_nav"
-import  {EducationPage} from "./custom_screens/education"
+
 function App() {
   return (
 <Router>
@@ -32,9 +32,7 @@ function App() {
         <Route path="/search">
           <SearchPage />
         </Route>
-        <Route path="/education">
-          <EducationPage />
-        </Route>
+        
     </Switch>
     </div>
 </Router>

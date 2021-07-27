@@ -21,7 +21,7 @@ export class RegistrationPage extends React.Component {
       pincode: '',
       district: '',
       state: '',
-      loggedin: true
+      loggedin: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this)

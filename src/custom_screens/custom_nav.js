@@ -21,17 +21,15 @@ export class CustomNavbar extends React.Component {
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               
               <li class="nav-item">
-              <Link to="/login" class="nav-link">Login</Link>
+              <a href="/login" class="nav-link">Login</a>
               </li>
               <li class="nav-item">
-              <Link to="/registration" class="nav-link">Registration</Link>
+              <a href="/registration" class="nav-link">Registration</a>
               </li>
               <li class="nav-item">
-              <Link to="/search" class="nav-link">Search</Link>
+              <a href="/search" class="nav-link">Search</a>
               </li>
-              <li class="nav-item">
-              <Link to="/education" class="nav-link">Education</Link>
-              </li>
+              
               
               
               
