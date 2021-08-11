@@ -29,6 +29,69 @@ export class CustomNavbar extends React.Component {
               <li class="nav-item">
               <a href="/search" class="nav-link">Search</a>
               </li>
+              <li class="nav-item">
+              <a href="/add_education" class="nav-link">AddEducation</a>
+              </li>
+              <li class="nav-item">
+              <a href="/edit_education" class="nav-link">EditEducation</a>
+              </li>
+              <li class="nav-item">
+              <a href="/view_education" class="nav-link">ViewEducation</a>
+              </li>
+              <li class="nav-item">
+              <a href="/add_job" class="nav-link">AddJob</a>
+              </li>
+              <li class="nav-item">
+              <a href="/edit_job" class="nav-link">EditJob</a>
+              </li>
+              <li class="nav-item">
+              <a href="/view_job" class="nav-link">ViewJob</a>
+              </li>
+              <li class="nav-item">
+              <a href="/add_income" class="nav-link">AddIncome</a>
+              </li>
+              <li class="nav-item">
+              <a href="/edit_income" class="nav-link">EditIncome</a>
+              </li>
+              <li class="nav-item">
+              <a href="/view_income" class="nav-link">ViewIncome</a>
+              </li>
+              <li class="nav-item">
+              <a href="/add_state" class="nav-link">AddState</a>
+              </li>
+              <li class="nav-item">
+              <a href="/edit_state" class="nav-link">EditState</a>
+              </li>
+              <li class="nav-item">
+              <a href="/view_state" class="nav-link">ViewState</a>
+              </li>
+              <li class="nav-item">
+              <a href="/add_district" class="nav-link">AddDistrict</a>
+              </li>
+              <li class="nav-item">
+              <a href="/edit_district" class="nav-link">EditDistrict</a>
+              </li>
+              <li class="nav-item">
+              <a href="/view_district" class="nav-link">ViewDistrict</a>
+              </li>
+              <li class="nav-item">
+              <a href="/add_religion" class="nav-link">AddReligion</a>
+              </li>
+              <li class="nav-item">
+              <a href="/edit_religion" class="nav-link">EditReligion</a>
+              </li>
+              <li class="nav-item">
+              <a href="/view_religion" class="nav-link">ViewReligion</a>
+              </li>
+              <li class="nav-item">
+              <a href="/add_marital_status" class="nav-link">AddMaritalStatus</a>
+              </li>
+              <li class="nav-item">
+              <a href="/edit_marital_status" class="nav-link">EditMaritalStatus</a>
+              </li>
+              <li class="nav-item">
+              <a href="/view_marital_status" class="nav-link">ViewMaritalStatus</a>
+              </li>
               
               
               
