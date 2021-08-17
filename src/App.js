@@ -43,77 +43,77 @@ function App() {
             <LoginPage />
 
           </Route>
-          <Route path="/login">
-            <LoginPage />
+          <Route path="/login" component={LoginPage}>
+            
           </Route>
-          <Route path="/registration">
-            <RegistrationPage />
+          <Route path="/registration" component={RegistrationPage}>
+            
           </Route>
-          <Route path="/search">
-            <SearchPage />
+          <Route path="/search" component={SearchPage}>
+           
           </Route>
-          <Route path="/add_education">
-            <AddEducationPage />
+          <Route path="/add_education" component={AddEducationPage}>
+            
           </Route>
-          <Route path="/edit_education">
-            <EditEducationPage />
+          <Route path="/edit_education" component={EditEducationPage}>
+            
           </Route>
-          <Route path="/view_education">
-            <ViewEducationPage />
+          <Route path="/view_education" component={ViewEducationPage}>
+            
           </Route>
-          <Route path="/add_job">
-            <AddJobPage />
+          <Route path="/add_job" component={AddJobPage}>
+            
           </Route>
-          <Route path="/edit_job">
-            <EditJobPage />
+          <Route path="/edit_job" component={EditJobPage}>
+            
           </Route>
-          <Route path="/view_job">
-            <ViewJobPage />
+          <Route path="/view_job" component={ViewJobPage}>
+           
           </Route>
-          <Route path="/add_income">
-            <AddIncomePage />
+          <Route path="/add_income" component={AddIncomePage}>
+           
           </Route>
-          <Route path="/edit_income">
-            <EditIncomePage />
+          <Route path="/edit_income" component={EditIncomePage}>
+            
           </Route>
-          <Route path="/view_income">
-            <ViewIncomePage />
+          <Route path="/view_income" component={ViewIncomePage}>
+            
           </Route>
-          <Route path="/add_state">
-            <AddStatePage />
+          <Route path="/add_state" component={AddStatePage}>
+            
           </Route>
           <Route path="/edit_state">
             <EditStatePage />
           </Route>
-          <Route path="/view_state">
-            <ViewStatePage />
+          <Route path="/view_state" component={ViewStatePage}>
+           
           </Route>
-          <Route path="/add_district">
-            <AddDistrictPage />
+          <Route path="/add_district" component={AddDistrictPage}>
+           
           </Route>
-          <Route path="/edit_district">
-            <EditDistrictPage />
+          <Route path="/edit_district" component={EditDistrictPage}>
+           
           </Route>
-          <Route path="/view_district">
-            <ViewDistrictPage />
+          <Route path="/view_district" component={ViewDistrictPage}>
+            
           </Route>
-          <Route path="/add_religion">
-            <AddReligionPage />
+          <Route path="/add_religion" component={AddReligionPage}>
+            
           </Route>
-          <Route path="/edit_religion">
-            <EditReligionPage />
+          <Route path="/edit_religion" component={EditReligionPage}>
+            
           </Route>
-          <Route path="/view_religion">
-            <ViewReligionPage />
+          <Route path="/view_religion" component={ViewReligionPage}>
+           
           </Route>
-          <Route path="/add_marital_status">
-            <AddMaritalStatusPage />
+          <Route path="/add_marital_status" omponent={AddMaritalStatusPage}>
+            
           </Route>
-          <Route path="/edit_marital_status">
-            <EditMaritalStatusPage />
+          <Route path="/edit_marital_status" omponent={EditMaritalStatusPage}>
+            
           </Route>
-          <Route path="/view_marital_status">
-            <ViewMaritalStatusPage />
+          <Route path="/view_marital_status" omponent={ViewMaritalStatusPage}>
+            
           </Route>
 
 

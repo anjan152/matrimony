@@ -5,90 +5,93 @@ import 'firebase/firebase-firestore';
 import 'firebase/firebase-auth';
 import { Redirect } from 'react-router-dom';
 
-export class EditJobPage extends React.Component {
+export class EditJobPage extends React.Component 
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            email: '',
-            password: '',
-            name: '',
-            date_of_birth: '',
-            address: '',
-            house_name: '',
-            place: '',
-            post: '',
-            pincode: '',
-            district: '',
-            state: '',
-            loggedin: false
-        };
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this)
-
-
-
-
-    }
-    handleChange(event) {
-        let data = {};
-        data[event.target.name] = event.target.value;
-        this.setState(data);
-    }
-    async handleSubmit(event) {
-        let firestore = firebase.firestore();
-
-        event.preventDefault();
-        let auth = firebase.auth();
-
-        try {
-            await auth.createUserWithEmailAndPassword(this.state.email, this.state.password);
-            await firestore.collection("registration").add({ name: this.state.name, date_of_birth: this.state.date_of_birth, address: this.state.address, house_name: this.state.house_name, place: this.state.place, post: this.state.post, pincode: this.state.pincode, district: this.state.district, state: this.state.state });
-            alert("registred")
-            this.setstate({ loggedin: true })
+     {
+         async getJob()
+        {
+            let firestore = firebase.firestore();
+            let id=this.props.location.state.id;
+            let job=await firestore.collection("job").doc(id).get()
+            this.setState({
+                job_name:job.data()["job_name"],
+               
+            })
+            
         }
-        catch (e) {
-            alert(e.message);
+        componentDidMount()
+        {
+            this.getJob()
         }
+
+  constructor(props) {
+    super(props);
+    this.state = {
+     job_name: ''
+          
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this)
+this.getJob = this.getJob.bind(this)
+
+
+
+  }
+  handleChange(event) {
+    let data = {};
+    data[event.target.name] = event.target.value;
+    this.setState(data);
+  }
+  async handleSubmit(event) {
+    let firestore = firebase.firestore();
+
+    event.preventDefault();
+   
+
+    try {
+      
+      await firestore.collection("jobs").doc(this.props.location.state.id).update({ job_name:this.state.job_name});
+      alert("added")
+      this.props.history.push({
+                pathname:"/view_new_jobs",
+                
+              })
+     
     }
-    redirect() {
-        return <Redirect to='/search' />;
+    catch (e) {
+      alert(e.message);
     }
-    render() {
-        return (
-            <>
+  }
+ 
+ 
+  
+  render() {
+    return (
+      <>
+        <Container>
+          <Row className="d-flex justify-content-center align-items-center " >
+            <Col lg={6}>
 
-                {this.state.loggedin ? this.redirect() : this.getContent()}
-            </>
-        );
-    }
-    getContent() {
-        return (
-            <>
-                <Container>
-                    <Row className="d-flex justify-content-center align-items-center " >
-                        <Col lg={6}>
-
-                            <Form id="form" onSubmit={this.handleSubmit}>
-                                <Form.Group>
-                                    <Form.Label>
-                                        Job
-                                    </Form.Label>
-                                    <Form.Control type="text" name="email" value={this.state.email} onChange={this.handleChange} className="form-control" />
-                                </Form.Group>
-
-                                <Form.Group>
+              <Form id="form" onSubmit={this.handleSubmit}>
+                <Form.Group>
+                  <Form.Label>
+                   Job
+                  </Form.Label>
+                  <Form.Control type="text" name="job_name" value={this.state.job_name} onChange={this.handleChange} className="form-control" />
+                </Form.Group>
+                
+                <Form.Group>
 
 
-                                    <Button type="submit" className="btn btn-primary"> EDIT</Button>
-                                </Form.Group>
+                  <Button type="submit" className="btn btn-primary"> ADD</Button>
+                </Form.Group>
 
-                            </Form>
-                        </Col>
-                    </Row>
-                </Container>
-            </>
+              </Form>
+            </Col>
+          </Row>
+        </Container>
+      </>
 
-        );
-    }
+    );
+  }
 }
