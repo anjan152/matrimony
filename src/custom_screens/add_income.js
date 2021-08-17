@@ -10,18 +10,8 @@ export class AddIncomePage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
-      password: '',
-      name: '',
-      date_of_birth: '',
-      address: '',
-      house_name: '',
-      place: '',
-      post: '',
-      pincode: '',
-      district: '',
-      state: '',
-      loggedin: false
+     income: ''
+          
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -39,30 +29,22 @@ export class AddIncomePage extends React.Component {
     let firestore = firebase.firestore();
 
     event.preventDefault();
-    let auth = firebase.auth();
+   
 
     try {
-      await auth.createUserWithEmailAndPassword(this.state.email, this.state.password);
-      await firestore.collection("registration").add({ name: this.state.name, date_of_birth: this.state.date_of_birth, address: this.state.address, house_name: this.state.house_name, place: this.state.place, post: this.state.post, pincode: this.state.pincode, district: this.state.district, state: this.state.state });
-      alert("registred")
-      this.setstate({ loggedin: true })
+      
+      await firestore.collection("incomes").add({ income:this.state.income});
+      alert("added")
+     
     }
     catch (e) {
       alert(e.message);
     }
   }
-  redirect() {
-    return <Redirect to='/search' />;
-  }
+ 
+ 
+  
   render() {
-    return (
-      <>
-      
-        {this.state.loggedin ? this.redirect() : this.getContent()}
-      </>
-    );
-  }
-  getContent() {
     return (
       <>
         <Container>
@@ -72,9 +54,9 @@ export class AddIncomePage extends React.Component {
               <Form id="form" onSubmit={this.handleSubmit}>
                 <Form.Group>
                   <Form.Label>
-                   Income
+                   INCOME
                   </Form.Label>
-                  <Form.Control type="text" name="email" value={this.state.email} onChange={this.handleChange} className="form-control" />
+                  <Form.Control type="text" name="income" value={this.state.job_name} onChange={this.handleChange} className="form-control" />
                 </Form.Group>
                 
                 <Form.Group>
