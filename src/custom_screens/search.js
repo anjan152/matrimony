@@ -1,6 +1,7 @@
 import React from "react";
-import { Form, Button, Container, Row, Col, Education
- } from "react-bootstrap";
+import {
+  Form, Button, Container, Row, Col, Education
+} from "react-bootstrap";
 import firebase from 'firebase/app';
 import 'firebase/firebase-firestore';
 import 'firebase/firebase-auth';
@@ -49,7 +50,34 @@ export class SearchPage extends React.Component {
             <Col lg={6}>
               <Form id="form" onSubmit={this.handleSubmit}>
                 <Form.Group>
-                  
+                <Form.Control as="select" >
+      <option>religion</option></Form.Control>
+                </Form.Group>
+      <Form.Group>
+                <Form.Control as="select" >
+      <option>education</option></Form.Control>
+                </Form.Group>
+      <Form.Group>
+                <Form.Control as="select" >
+      <option>district</option></Form.Control>
+                </Form.Group>
+      <Form.Group>
+                <Form.Control as="select" >
+      <option>state</option></Form.Control>
+                </Form.Group>
+      <Form.Group>
+                <Form.Control as="select" >
+
+      <option>job</option></Form.Control>
+                </Form.Group>
+            <Form.Group>
+                <Form.Control as="select" >
+      <option>income</option></Form.Control>
+                </Form.Group>
+      <Form.Group>
+                <Form.Control as="select" >
+      <option>education</option>
+    </Form.Control>
                 </Form.Group>
                 <Form.Group><Button type="submit" className="btn btn-primary"> SEARCH</Button>
                 </Form.Group>

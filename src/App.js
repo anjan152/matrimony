@@ -1,10 +1,10 @@
 import logo from './logo.svg';
 import './App.css';
 import {
-BrowserRouter as Router,
-Switch,
-Route,
-Link
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
 } from "react-router-dom";
 import { LoginPage } from "./custom_screens/login"
 import { RegistrationPage } from "./custom_screens/registration"
@@ -44,76 +44,76 @@ function App() {
 
           </Route>
           <Route path="/login" component={LoginPage}>
-            
+
           </Route>
           <Route path="/registration" component={RegistrationPage}>
-            
+
           </Route>
           <Route path="/search" component={SearchPage}>
-           
+
           </Route>
           <Route path="/add_education" component={AddEducationPage}>
-            
+
           </Route>
           <Route path="/edit_education" component={EditEducationPage}>
-            
+
           </Route>
           <Route path="/view_education" component={ViewEducationPage}>
-            
+
           </Route>
           <Route path="/add_job" component={AddJobPage}>
-            
+
           </Route>
           <Route path="/edit_job" component={EditJobPage}>
-            
+
           </Route>
           <Route path="/view_job" component={ViewJobPage}>
-           
+
           </Route>
           <Route path="/add_income" component={AddIncomePage}>
-           
+
           </Route>
           <Route path="/edit_income" component={EditIncomePage}>
-            
+
           </Route>
           <Route path="/view_income" component={ViewIncomePage}>
-            
+
           </Route>
           <Route path="/add_state" component={AddStatePage}>
-            
+
           </Route>
           <Route path="/edit_state">
             <EditStatePage />
           </Route>
           <Route path="/view_state" component={ViewStatePage}>
-           
+
           </Route>
           <Route path="/add_district" component={AddDistrictPage}>
-           
+
           </Route>
           <Route path="/edit_district" component={EditDistrictPage}>
-           
+
           </Route>
           <Route path="/view_district" component={ViewDistrictPage}>
-            
+
           </Route>
           <Route path="/add_religion" component={AddReligionPage}>
-            
+
           </Route>
           <Route path="/edit_religion" component={EditReligionPage}>
-            
+
           </Route>
           <Route path="/view_religion" component={ViewReligionPage}>
-           
+
           </Route>
           <Route path="/add_marital_status" omponent={AddMaritalStatusPage}>
-            
+
           </Route>
           <Route path="/edit_marital_status" omponent={EditMaritalStatusPage}>
-            
+
           </Route>
           <Route path="/view_marital_status" omponent={ViewMaritalStatusPage}>
-            
+
           </Route>
 
 
