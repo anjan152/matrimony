@@ -82,8 +82,8 @@ function App() {
           <Route path="/add_state" component={AddStatePage}>
 
           </Route>
-          <Route path="/edit_state">
-            <EditStatePage />
+          <Route path="/edit_state" component={EditStatePage}>
+            
           </Route>
           <Route path="/view_state" component={ViewStatePage}>
 
@@ -106,13 +106,13 @@ function App() {
           <Route path="/view_religion" component={ViewReligionPage}>
 
           </Route>
-          <Route path="/add_marital_status" omponent={AddMaritalStatusPage}>
+          <Route path="/add_marital_status" component={AddMaritalStatusPage}>
 
           </Route>
-          <Route path="/edit_marital_status" omponent={EditMaritalStatusPage}>
+          <Route path="/edit_marital_status" component={EditMaritalStatusPage}>
 
           </Route>
-          <Route path="/view_marital_status" omponent={ViewMaritalStatusPage}>
+          <Route path="/view_marital_status" component={ViewMaritalStatusPage}>
 
           </Route>
 
