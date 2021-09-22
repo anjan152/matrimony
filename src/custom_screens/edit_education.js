@@ -58,7 +58,7 @@ export class EditEducationPage extends React.Component {
     return (
       <>
       
-        {this.state.loggedin ? this.redirect() : this.getContent()}
+        {this.getContent()}
       </>
     );
   }

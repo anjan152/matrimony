@@ -77,7 +77,7 @@ export class ViewDistrictPage extends React.Component {
        update(id)
        {
          this.props.history.push({
-           pathname:"/edit_ districts",
+           pathname:"/edit_ district",
            state:{
              id:id
            }

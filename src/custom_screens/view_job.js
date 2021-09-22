@@ -76,7 +76,7 @@ export class ViewJobPage extends React.Component {
        update(id)
        {
          this.props.history.push({
-           pathname:"/edit_jobs",
+           pathname:"/edit_job",
            state:{
              id:id
            }

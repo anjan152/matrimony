@@ -76,7 +76,7 @@ export class ViewIncomePage extends React.Component {
        update(id)
        {
          this.props.history.push({
-           pathname:"/edit_incomes",
+           pathname:"/edit_income",
            state:{
              id:id
            }
@@ -85,7 +85,7 @@ export class ViewIncomePage extends React.Component {
        async deleteData(id){
         if(window.confirm("Are you sure?")){
           let firestore=firebase.firestore();
-          await firestore.collection("incomes").doc(id).delete();
+          await firestore.collection("income").doc(id).delete();
           alert("Deleted");
           this.getIncomes();
         }

@@ -83,7 +83,7 @@ function App() {
 
           </Route>
           <Route path="/edit_state" component={EditStatePage}>
-            
+          
           </Route>
           <Route path="/view_state" component={ViewStatePage}>
 

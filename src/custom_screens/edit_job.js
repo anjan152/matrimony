@@ -5,34 +5,30 @@ import 'firebase/firebase-firestore';
 import 'firebase/firebase-auth';
 import { Redirect } from 'react-router-dom';
 
-export class EditJobPage extends React.Component 
+export class EditJobPage extends React.Component {
+  async getJob() {
+    let firestore = firebase.firestore();
+    let id = this.props.location.state.id;
+    let job = await firestore.collection("jobs").doc(id).get()
+    this.setState({
+      job_name: job.data()["job_name"],
 
-     {
-         async getJob()
-        {
-            let firestore = firebase.firestore();
-            let id=this.props.location.state.id;
-            let job=await firestore.collection("job").doc(id).get()
-            this.setState({
-                job_name:job.data()["job_name"],
-               
-            })
-            
-        }
-        componentDidMount()
-        {
-            this.getJob()
-        }
+    })
+
+  }
+  componentDidMount() {
+    this.getJob()
+  }
 
   constructor(props) {
     super(props);
     this.state = {
-     job_name: ''
-          
+      job_name: ''
+
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this)
-this.getJob = this.getJob.bind(this)
+    this.getJob = this.getJob.bind(this)
 
 
 
@@ -46,25 +42,25 @@ this.getJob = this.getJob.bind(this)
     let firestore = firebase.firestore();
 
     event.preventDefault();
-   
+
 
     try {
-      
-      await firestore.collection("jobs").doc(this.props.location.state.id).update({ job_name:this.state.job_name});
-      alert("added")
+
+      await firestore.collection("jobs").doc(this.props.location.state.id).update({ job_name: this.state.job_name });
+      alert("updated")
       this.props.history.push({
-                pathname:"/view_new_jobs",
-                
-              })
-     
+        pathname: "/view_new_job",
+
+      })
+
     }
     catch (e) {
       alert(e.message);
     }
   }
- 
- 
-  
+
+
+
   render() {
     return (
       <>
@@ -75,11 +71,11 @@ this.getJob = this.getJob.bind(this)
               <Form id="form" onSubmit={this.handleSubmit}>
                 <Form.Group>
                   <Form.Label>
-                   Job
+                    Job
                   </Form.Label>
                   <Form.Control type="text" name="job_name" value={this.state.job_name} onChange={this.handleChange} className="form-control" />
                 </Form.Group>
-                
+
                 <Form.Group>
 
 
