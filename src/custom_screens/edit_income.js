@@ -6,89 +6,89 @@ import 'firebase/firebase-auth';
 import { Redirect } from 'react-router-dom';
 
 export class EditIncomePage extends React.Component {
-
+    async getIncome() {
+      let firestore = firebase.firestore();
+      let id = this.props.location.state.id;
+      let income = await firestore.collection("incomes").doc(id).get()
+      this.setState({
+        income_name: income.data()["income_name"],
+  
+      })
+  
+    }
+    componentDidMount() {
+      this.getIncome()
+    }
+  
     constructor(props) {
-        super(props);
-        this.state = {
-            email: '',
-            password: '',
-            name: '',
-            date_of_birth: '',
-            address: '',
-            house_name: '',
-            place: '',
-            post: '',
-            pincode: '',
-            district: '',
-            state: '',
-            loggedin: false
-        };
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this)
-
-
-
-
+      super(props);
+      this.state = {
+        income_name: ''
+  
+      };
+      this.handleChange = this.handleChange.bind(this);
+      this.handleSubmit = this.handleSubmit.bind(this)
+      this.getIncome = this.getIncome.bind(this)
+  
+  
+  
     }
     handleChange(event) {
-        let data = {};
-        data[event.target.name] = event.target.value;
-        this.setState(data);
+      let data = {};
+      data[event.target.name] = event.target.value;
+      this.setState(data);
     }
     async handleSubmit(event) {
-        let firestore = firebase.firestore();
-
-        event.preventDefault();
-        let auth = firebase.auth();
-
-        try {
-            await auth.createUserWithEmailAndPassword(this.state.email, this.state.password);
-            await firestore.collection("registration").add({ name: this.state.name, date_of_birth: this.state.date_of_birth, address: this.state.address, house_name: this.state.house_name, place: this.state.place, post: this.state.post, pincode: this.state.pincode, district: this.state.district, state: this.state.state });
-            alert("registred")
-            this.setstate({ loggedin: true })
-        }
-        catch (e) {
-            alert(e.message);
-        }
+      let firestore = firebase.firestore();
+  
+      event.preventDefault();
+  
+  
+      try {
+  
+        await firestore.collection("incomes").doc(this.props.location.state.id).update({ income_name: this.state.income_name });
+        alert("updated")
+        this.props.history.push({
+          pathname: "/view_income",
+  
+        })
+  
+      }
+      catch (e) {
+        alert(e.message);
+      }
     }
-    redirect() {
-        return <Redirect to='/search' />;
-    }
+  
+  
+  
     render() {
-        return (
-            <>
-
-                {this.getContent()}
-            </>
-        );
+      return (
+        <>
+          <Container>
+            <Row className="d-flex justify-content-center align-items-center " >
+              <Col lg={6}>
+  
+                <Form id="form" onSubmit={this.handleSubmit}>
+                  <Form.Group>
+                    <Form.Label>
+                      Income
+                    </Form.Label>
+                    <Form.Control type="text" name="income_name" value={this.state.income_name} onChange={this.handleChange} className="form-control" />
+                  </Form.Group>
+  
+                  <Form.Group>
+  
+  
+                    <Button type="submit" className="btn btn-primary"> ADD</Button>
+                  </Form.Group>
+  
+                </Form>
+              </Col>
+            </Row>
+          </Container>
+        </>
+  
+      );
     }
-    getContent() {
-        return (
-            <>
-                <Container>
-                    <Row className="d-flex justify-content-center align-items-center " >
-                        <Col lg={6}>
-
-                            <Form id="form" onSubmit={this.handleSubmit}>
-                                <Form.Group>
-                                    <Form.Label>
-                                        Income
-                                    </Form.Label>
-                                    <Form.Control type="text" name="email" value={this.state.email} onChange={this.handleChange} className="form-control" />
-                                </Form.Group>
-
-                                <Form.Group>
-
-
-                                    <Button type="submit" className="btn btn-primary"> EDIT</Button>
-                                </Form.Group>
-
-                            </Form>
-                        </Col>
-                    </Row>
-                </Container>
-            </>
-
-        );
-    }
-}
+  }
+  

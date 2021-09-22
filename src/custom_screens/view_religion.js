@@ -76,7 +76,7 @@ export class ViewReligionPage extends React.Component {
        update(id)
        {
          this.props.history.push({
-           pathname:"/edit_religions",
+           pathname:"/edit_religion",
            state:{
              id:id
            }
