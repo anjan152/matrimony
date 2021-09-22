@@ -86,7 +86,7 @@ export class ViewDistrictPage extends React.Component {
        async deleteData(id){
         if(window.confirm("Are you sure?")){
           let firestore=firebase.firestore();
-          await firestore.collection(" districts").doc(id).delete();
+          await firestore.collection("districts").doc(id).delete();
           alert("Deleted");
           this.getDistricts();
         }

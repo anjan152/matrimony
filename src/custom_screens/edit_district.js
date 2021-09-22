@@ -17,7 +17,7 @@ export class EditDistrictPage extends React.Component {
 
   }
   componentDidMount() {
-    this.getdistrict()
+    this.getDistrict()
   }
 
   constructor(props) {

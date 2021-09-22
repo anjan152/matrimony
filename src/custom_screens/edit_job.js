@@ -49,7 +49,7 @@ export class EditJobPage extends React.Component {
       await firestore.collection("jobs").doc(this.props.location.state.id).update({ job_name: this.state.job_name });
       alert("updated")
       this.props.history.push({
-        pathname: "/view_new_job",
+        pathname: "/view_job",
 
       })
 
