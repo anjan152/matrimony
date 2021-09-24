@@ -9,50 +9,50 @@ export class ViewMaritalStatusPage extends React.Component {
 
   constructor(props){
             super(props);
-            this.marital_status={
+            this.state={
               rows:[]
             }
-        this.getMaritalStatuses=this.getMaritalStatuses.bind(this);
+        this.getMaritalStatus=this.getMaritalStatus.bind(this);
         this.update=this.update.bind(this);
       };
     
-     async getMaritalStatuses()
+     async getMaritalStatus()
       {
         let firestore = firebase.firestore();
-        let maritalStatus = await firestore.collection("marital_statuses").get()
+        let marital_status = await firestore.collection("marital_statuses").get()
         let rows=[];
-       maritalStatus.forEach((maritalStatus)=>{
+        marital_status .forEach((marital_status )=>{
             rows.push(<tr>
               
                 <td>
                   {
-                    maritalStatus.data()["marital_status"]
+                    marital_status .data()["marital_status "]
                   }
         </td>
                
                  <td>
-                   <Button onClick={(e)=>{this.update(maritalStatus.id)}}>update</Button>
+                   <Button onClick={(e)=>{this.update(marital_status .id)}}>update</Button>
                    </td>
                    <td>
-                     <Button onClick={(e)=>{this.deleteData(maritalStatus.id)}}>delete</Button>
+                     <Button onClick={(e)=>{this.deleteData(marital_status .id)}}>delete</Button>
                    </td>
             </tr>)
                 
         });
       
-      this.setMaritalstatus({rows:rows})
+      this.setState({rows:rows})
       }
       render()
       {
         return(
             <>
          <h2>
-            VIEW MaritalStatus
+            VIEW marital status 
         </h2>
         <Table striped bordered hover>
         <thead>
           <tr>
-            <th>MaritalStatus</th>
+            <th>Marital status </th>
             
             
     
@@ -62,7 +62,7 @@ export class ViewMaritalStatusPage extends React.Component {
         </thead>
         <tbody>
             {
-              this.marital_status.rows
+              this.state.rows
             }
         </tbody>
         </Table>
@@ -71,13 +71,13 @@ export class ViewMaritalStatusPage extends React.Component {
     }
        componentDidMount()
        {
-         this.getMaritalStatuses()
+         this.getMaritalStatus ()
        }
        update(id)
        {
          this.props.history.push({
-           pathname:"/edit_marital_status",
-           marital_status:{
+           pathname:"/edit_marital_status ",
+           state:{
              id:id
            }
          })
@@ -87,7 +87,7 @@ export class ViewMaritalStatusPage extends React.Component {
           let firestore=firebase.firestore();
           await firestore.collection("marital_statuses").doc(id).delete();
           alert("Deleted");
-          this.getMaritalStatus();
+          this.getMaritalStatus ();
         }
       }
 }
