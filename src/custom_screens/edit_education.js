@@ -6,13 +6,14 @@ import 'firebase/firebase-auth';
 import { Redirect } from 'react-router-dom';
 
 
+
 export class EditEducationPage extends React.Component {
   async getEducation() {
     let firestore = firebase.firestore();
     let id = this.props.location.state.id;
     let education = await firestore.collection("educations").doc(id).get()
     this.setState({
-      education_name: education.data()["education_name"],
+      education_name: education.data()["education"],
 
     })
 
@@ -47,10 +48,10 @@ export class EditEducationPage extends React.Component {
 
     try {
 
-      await firestore.collection("educations").doc(this.props.location.state.id).update({ education_name: this.state.education_name });
+      await firestore.collection("educations").doc(this.props.location.state.id).update({ educations: this.state.educations });
       alert("updated")
       this.props.history.push({
-        pathname: "/view_new_education"
+        pathname: "/view_education",
 
       })
 
@@ -74,7 +75,7 @@ export class EditEducationPage extends React.Component {
                   <Form.Label>
                     Education
                   </Form.Label>
-                  <Form.Control type="text" name="education_name" value={this.state.education_name} onChange={this.handleChange} className="form-control" />
+                  <Form.Control type="text" name="education" value={this.state.education} onChange={this.handleChange} className="form-control" />
                 </Form.Group>
 
                 <Form.Group>

@@ -4,7 +4,6 @@ import firebase from 'firebase/app';
 import 'firebase/firebase-firestore';
 import 'firebase/firebase-auth';
 import { Redirect } from 'react-router-dom';
-
 export class ViewEducationPage extends React.Component {
 
   constructor(props){
@@ -12,16 +11,16 @@ export class ViewEducationPage extends React.Component {
             this.state={
               rows:[]
             }
-        this.getEducations=this.getEducations.bind(this);
+        this.getEducation=this.getEducation.bind(this);
         this.update=this.update.bind(this);
       };
     
-     async getEducations()
+     async getEducation()
       {
         let firestore = firebase.firestore();
-        let educations = await firestore.collection("educations").get()
+        let education = await firestore.collection("educations").get()
         let rows=[];
-        educations.forEach((education)=>{
+        education.forEach((education)=>{
             rows.push(<tr>
               
                 <td>
@@ -52,7 +51,7 @@ export class ViewEducationPage extends React.Component {
         <Table striped bordered hover>
         <thead>
           <tr>
-            <th>EDUCATION</th>
+            <th>EDUCATION NAME</th>
             
             
     
@@ -71,7 +70,7 @@ export class ViewEducationPage extends React.Component {
     }
        componentDidMount()
        {
-         this.getEducations()
+         this.getEducation()
        }
        update(id)
        {
@@ -87,7 +86,7 @@ export class ViewEducationPage extends React.Component {
           let firestore=firebase.firestore();
           await firestore.collection("educations").doc(id).delete();
           alert("Deleted");
-          this.getEducations();
+          this.get();
         }
       }
 }
