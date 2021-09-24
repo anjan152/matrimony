@@ -12,16 +12,16 @@ export class ViewIncomePage extends React.Component {
             this.state={
               rows:[]
             }
-        this.getIncomes=this.getIncomes.bind(this);
+        this.getIncome=this.getIncome.bind(this);
         this.update=this.update.bind(this);
       };
     
-     async getIncomes()
+     async getIncome()
       {
         let firestore = firebase.firestore();
-        let incomes = await firestore.collection("incomes").get()
+        let income = await firestore.collection("incomes").get()
         let rows=[];
-        incomes.forEach((income)=>{
+        income.forEach((income)=>{
             rows.push(<tr>
               
                 <td>
@@ -71,7 +71,7 @@ export class ViewIncomePage extends React.Component {
     }
        componentDidMount()
        {
-         this.getIncomes()
+         this.getIncome()
        }
        update(id)
        {
@@ -85,9 +85,9 @@ export class ViewIncomePage extends React.Component {
        async deleteData(id){
         if(window.confirm("Are you sure?")){
           let firestore=firebase.firestore();
-          await firestore.collection("income").doc(id).delete();
+          await firestore.collection("incomes").doc(id).delete();
           alert("Deleted");
-          this.getIncomes();
+          this.getIncome();
         }
       }
 }

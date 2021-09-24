@@ -12,16 +12,16 @@ export class ViewReligionPage extends React.Component {
             this.state={
               rows:[]
             }
-        this.getReligions=this.getReligions.bind(this);
+        this.getReligion=this.getReligion.bind(this);
         this.update=this.update.bind(this);
       };
     
-     async getReligions()
+     async getReligion()
       {
         let firestore = firebase.firestore();
-        let religions = await firestore.collection("religions").get()
+        let religion = await firestore.collection("religions").get()
         let rows=[];
-        religions.forEach((religion)=>{
+        religion.forEach((religion)=>{
             rows.push(<tr>
               
                 <td>
@@ -71,7 +71,7 @@ export class ViewReligionPage extends React.Component {
     }
        componentDidMount()
        {
-         this.getReligions()
+         this.getReligion()
        }
        update(id)
        {
@@ -87,7 +87,7 @@ export class ViewReligionPage extends React.Component {
           let firestore=firebase.firestore();
           await firestore.collection("religions").doc(id).delete();
           alert("Deleted");
-          this.getReligions();
+          this.getReligion();
         }
       }
 }

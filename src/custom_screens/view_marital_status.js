@@ -9,7 +9,7 @@ export class ViewMaritalStatusPage extends React.Component {
 
   constructor(props){
             super(props);
-            this.state={
+            this.marital_status={
               rows:[]
             }
         this.getMaritalStatuses=this.getMaritalStatuses.bind(this);
@@ -19,9 +19,9 @@ export class ViewMaritalStatusPage extends React.Component {
      async getMaritalStatuses()
       {
         let firestore = firebase.firestore();
-        let maritalStatuses = await firestore.collection("marital_statuses").get()
+        let maritalStatus = await firestore.collection("marital_statuses").get()
         let rows=[];
-       maritalStatuses.forEach((maritalStatus)=>{
+       maritalStatus.forEach((maritalStatus)=>{
             rows.push(<tr>
               
                 <td>
@@ -40,7 +40,7 @@ export class ViewMaritalStatusPage extends React.Component {
                 
         });
       
-      this.setState({rows:rows})
+      this.setMaritalstatus({rows:rows})
       }
       render()
       {
@@ -62,7 +62,7 @@ export class ViewMaritalStatusPage extends React.Component {
         </thead>
         <tbody>
             {
-              this.state.rows
+              this.marital_status.rows
             }
         </tbody>
         </Table>
@@ -76,8 +76,8 @@ export class ViewMaritalStatusPage extends React.Component {
        update(id)
        {
          this.props.history.push({
-           pathname:"/edit_marital_statuses",
-           state:{
+           pathname:"/edit_marital_status",
+           marital_status:{
              id:id
            }
          })
@@ -87,7 +87,7 @@ export class ViewMaritalStatusPage extends React.Component {
           let firestore=firebase.firestore();
           await firestore.collection("marital_statuses").doc(id).delete();
           alert("Deleted");
-          this.getMaritalStatuses();
+          this.getMaritalStatus();
         }
       }
 }

@@ -8,19 +8,51 @@ import 'firebase/firebase-auth';
 
 
 export class SearchPage extends React.Component {
+  componentDidMount()
+  {
+    this.setSelectBoxes()
+  }
+  async setSelectBoxes(){
+    
+    await this.getData("jobs","job","job")
+    await this.getData("incomes","income","income")
+    await this.getData("religions","religion","religion")
+    await this.getData("educations","education","education")
+    await this.getData("district","district","district")
+    await this.getData("states","state","state")
+  }
+async getData(collection,field_name,select){
+  let firestore = firebase.firestore();
+        let data = await firestore.collection(collection).get()
+        let options=[];
+  data.forEach((element)=>{
+    options.push(
+      <option value={element.id}>{element.data()[field_name]}</option>
 
+    )
+
+
+  })
+  let select_options={}
+  select_options[select]=options
+  this.setState(select_options)
+}
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
-      date_of_birth: '',
-      address: '',
-      house_name: '',
-      place: '',
-      post: '',
-      pincode: '',
-      district: '',
-      state: ''
+      religon_id:'',
+      education_id:'',
+      district_id:'',
+      state_id:'',
+      job_id:'',
+      income_id:'',
+      state: '',
+      religion: [],
+      education: [],
+      district: [],
+      state: [],
+      job:[],
+      income: []
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -42,6 +74,7 @@ export class SearchPage extends React.Component {
       alert(e.message);
     }
   }
+
   render() {
     return (
       <>
@@ -49,36 +82,44 @@ export class SearchPage extends React.Component {
           <Row className="d-flex justify-content-center align-items-center " >
             <Col lg={6}>
               <Form id="form" onSubmit={this.handleSubmit}>
-                <Form.Group>
-                <Form.Control as="select" >
-      <option>religion</option></Form.Control>
+               <Form.Group>
+                <Form.Control as="select"name="religion_id" value={this.state.religion_id} onChange={this.handleChange}  >
+                 <option value=''>religion </option>
+                   {this.state.religion}
+                </Form.Control>
+               </Form.Group>
+      <Form.Group>
+       <Form.Control as="select"name="education_id" value={this.state.education_id} onChange={this.handleChange}  >
+        <option value=''>education</option>
+           {this.state.education}
+         </Form.Control>
+       </Form.Group>
+            <Form.Group>
+                <Form.Control as="select"  name="district_id" value={this.state.district_id} onChange={this.handleChange}  >
+      <option value=''>district</option>
+      {this.state.district}
+      </Form.Control>
                 </Form.Group>
       <Form.Group>
-                <Form.Control as="select" >
-      <option>education</option></Form.Control>
+                <Form.Control as="select" name="state_id" value={this.state.state_id} onChange={this.handleChange} >
+      <option value=''>state</option>
+      {this.state.state}
+      </Form.Control>
                 </Form.Group>
       <Form.Group>
-                <Form.Control as="select" >
-      <option>district</option></Form.Control>
-                </Form.Group>
-      <Form.Group>
-                <Form.Control as="select" >
-      <option>state</option></Form.Control>
-                </Form.Group>
-      <Form.Group>
-                <Form.Control as="select" >
+                <Form.Control as="select"name="job_id" value={this.state.job_id} onChange={this.handleChange}  >
 
-      <option>job</option></Form.Control>
+      <option value=''>job</option>
+      {this.state.job}
+      </Form.Control>
                 </Form.Group>
             <Form.Group>
-                <Form.Control as="select" >
-      <option>income</option></Form.Control>
+                <Form.Control as="select"name="income_id" value={this.state.income_id} onChange={this.handleChange}  >
+      <option value=''>income</option>
+      {this.state.income}
+      </Form.Control>
                 </Form.Group>
-      <Form.Group>
-                <Form.Control as="select" >
-      <option>education</option>
-    </Form.Control>
-                </Form.Group>
+      
                 <Form.Group><Button type="submit" className="btn btn-primary"> SEARCH</Button>
                 </Form.Group>
 

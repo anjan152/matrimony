@@ -76,7 +76,7 @@ export class ViewStatePage extends React.Component {
        update(id)
        {
          this.props.history.push({
-           pathname:"/edit_states",
+           pathname:"/edit_state",
            state:{
              id:id
            }

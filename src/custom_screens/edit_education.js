@@ -13,7 +13,7 @@ export class EditEducationPage extends React.Component {
     let id = this.props.location.state.id;
     let education = await firestore.collection("educations").doc(id).get()
     this.setState({
-      education_name: education.data()["education"],
+      education: education.data()["education"],
 
     })
 
@@ -48,7 +48,7 @@ export class EditEducationPage extends React.Component {
 
     try {
 
-      await firestore.collection("educations").doc(this.props.location.state.id).update({ educations: this.state.educations });
+      await firestore.collection("educations").doc(this.props.location.state.id).update({ education: this.state.education });
       alert("updated")
       this.props.history.push({
         pathname: "/view_education",

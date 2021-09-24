@@ -86,7 +86,7 @@ export class ViewEducationPage extends React.Component {
           let firestore=firebase.firestore();
           await firestore.collection("educations").doc(id).delete();
           alert("Deleted");
-          this.get();
+          this.getEducation();
         }
       }
 }

@@ -11,7 +11,7 @@ export class EditReligionPage extends React.Component {
       let id = this.props.location.state.id;
       let religion = await firestore.collection("religions").doc(id).get()
       this.setState({
-        religion_name: religion.data()["religion_name"],
+        religion: religion.data()["religion"],
   
       })
   
@@ -23,7 +23,7 @@ export class EditReligionPage extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
-        religion_name: ''
+        religion: ''
   
       };
       this.handleChange = this.handleChange.bind(this);
@@ -46,7 +46,7 @@ export class EditReligionPage extends React.Component {
   
       try {
   
-        await firestore.collection("religions").doc(this.props.location.state.id).update({ religion_name: this.state.religion_name });
+        await firestore.collection("religions").doc(this.props.location.state.id).update({ religion: this.state.religion });
         alert("updated")
         this.props.history.push({
           pathname: "/view_religion",
@@ -73,7 +73,7 @@ export class EditReligionPage extends React.Component {
                     <Form.Label>
                       Religion
                     </Form.Label>
-                    <Form.Control type="text" name="religion_name" value={this.state.religion_name} onChange={this.handleChange} className="form-control" />
+                    <Form.Control type="text" name="religion" value={this.state.religion} onChange={this.handleChange} className="form-control" />
                   </Form.Group>
   
                   <Form.Group>

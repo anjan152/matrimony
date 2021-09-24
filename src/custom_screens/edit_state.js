@@ -6,26 +6,29 @@ import 'firebase/firebase-auth';
 import { Redirect } from 'react-router-dom';
 
 export class EditStatePage extends React.Component {
+  async getState() {
+    let firestore = firebase.firestore();
+    let id = this.props.location.state.id;
+    let state = await firestore.collection("states").doc(id).get()
+    this.setState({
+      state: state.data()["state"],
+
+    })
+
+  }
+  componentDidMount() {
+    this.getState()
+  }
 
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
-      password: '',
-      name: '',
-      date_of_birth: '',
-      address: '',
-      house_name: '',
-      place: '',
-      post: '',
-      pincode: '',
-      district: '',
-      state: '',
-      loggedin: false
+      state: ''
+
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this)
-
+    this.getState = this.getState.bind(this)
 
 
 
@@ -39,30 +42,26 @@ export class EditStatePage extends React.Component {
     let firestore = firebase.firestore();
 
     event.preventDefault();
-    let auth = firebase.auth();
+
 
     try {
-      await auth.createUserWithEmailAndPassword(this.state.email, this.state.password);
-      await firestore.collection("registration").add({ name: this.state.name, date_of_birth: this.state.date_of_birth, address: this.state.address, house_name: this.state.house_name, place: this.state.place, post: this.state.post, pincode: this.state.pincode, district: this.state.district, state: this.state.state });
-      alert("registred")
-      this.setstate({ loggedin: true })
+
+      await firestore.collection("states").doc(this.props.location.state.id).update({ state: this.state.state });
+      alert("updated")
+      this.props.history.push({
+        pathname: "/view_state",
+
+      })
+
     }
     catch (e) {
       alert(e.message);
     }
   }
-  redirect() {
-    return <Redirect to='/search' />;
-  }
+
+
+
   render() {
-    return (
-      <>
-      
-        {this.state.loggedin ? this.redirect() : this.getContent()}
-      </>
-    );
-  }
-  getContent() {
     return (
       <>
         <Container>
@@ -72,15 +71,15 @@ export class EditStatePage extends React.Component {
               <Form id="form" onSubmit={this.handleSubmit}>
                 <Form.Group>
                   <Form.Label>
-                   State
+                    STATE
                   </Form.Label>
-                  <Form.Control type="text" name="email" value={this.state.email} onChange={this.handleChange} className="form-control" />
+                  <Form.Control type="text" name="state" value={this.state.state} onChange={this.handleChange} className="form-control" />
                 </Form.Group>
-                
+
                 <Form.Group>
 
 
-                  <Button type="submit" className="btn btn-primary"> EDIT</Button>
+                  <Button type="submit" className="btn btn-primary"> ADD</Button>
                 </Form.Group>
 
               </Form>

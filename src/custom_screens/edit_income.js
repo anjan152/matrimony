@@ -11,7 +11,7 @@ export class EditIncomePage extends React.Component {
       let id = this.props.location.state.id;
       let income = await firestore.collection("incomes").doc(id).get()
       this.setState({
-        income_name: income.data()["income_name"],
+        income: income.data()["income"],
   
       })
   
@@ -23,7 +23,7 @@ export class EditIncomePage extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
-        income_name: ''
+        income: ''
   
       };
       this.handleChange = this.handleChange.bind(this);
@@ -46,7 +46,7 @@ export class EditIncomePage extends React.Component {
   
       try {
   
-        await firestore.collection("incomes").doc(this.props.location.state.id).update({ income_name: this.state.income_name });
+        await firestore.collection("incomes").doc(this.props.location.state.id).update({ income: this.state.income });
         alert("updated")
         this.props.history.push({
           pathname: "/view_income",
@@ -73,7 +73,7 @@ export class EditIncomePage extends React.Component {
                     <Form.Label>
                       Income
                     </Form.Label>
-                    <Form.Control type="text" name="income_name" value={this.state.income_name} onChange={this.handleChange} className="form-control" />
+                    <Form.Control type="text" name="income" value={this.state.income} onChange={this.handleChange} className="form-control" />
                   </Form.Group>
   
                   <Form.Group>
