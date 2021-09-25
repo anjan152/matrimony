@@ -22,7 +22,7 @@ export class EditMaritalStatusPage extends React.Component {
   
     constructor(props) {
       super(props);
-      this.marital_status = {
+      this.state = {
         marital_status: ''
   
       };
@@ -43,7 +43,7 @@ export class EditMaritalStatusPage extends React.Component {
   
       try {
   
-        await firestore.collection("marital_statuses").doc(this.props.location.marital_status.id).update({ marital_status: this.marital_status.marital_status });
+        await firestore.collection("marital_statuses").doc(this.props.location.state.id).update({ marital_status: this.state.marital_status });
         alert("updated")
         this.props.history.push({
           pathname: "/view_marital_status",
@@ -70,7 +70,7 @@ export class EditMaritalStatusPage extends React.Component {
                     <Form.Label>
                       MARITAL STATUS
                     </Form.Label>
-                    <Form.Control type="text" name="marital_status" value={this.marital_status.marital_status} onChange={this.handleChange} className="form-control" />
+                    <Form.Control type="text" name="marital_status" value={this.state.marital_state} onChange={this.handleChange} className="form-control" />
                   </Form.Group>
   
                   <Form.Group>
