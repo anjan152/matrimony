@@ -31,21 +31,70 @@ import { AddMaritalStatusPage } from "./custom_screens/add_marital_status"
 import { EditMaritalStatusPage } from "./custom_screens/edit_marital_status"
 import { ViewMaritalStatusPage } from "./custom_screens/view_marital_status"
 import { CustomNavbar } from "./custom_screens/custom_nav"
+import firebase from 'firebase/app';
+import 'firebase/firebase-firestore';
+import 'firebase/firebase-auth';
 
+import React from 'react';
 function App() {
+  const [loggedIn, setLogin] = React.useState(false);
+  const [isAdmin, setIsAdmin] = React.useState(false);
+
+  let renderLayout = (props) => {
+    console.log("RINNING RN")
+    console.log(loggedIn)
+    console.log(isAdmin)
+    if (loggedIn === null) {
+      console.log("here")
+      return <> </>;
+    }
+    else if (loggedIn === false) {
+      return <LoginPage></LoginPage>
+    }
+    else {
+      if(isAdmin){
+        return <ViewDistrictPage></ViewDistrictPage>
+
+      }
+      else{
+        return <SearchPage></SearchPage>
+
+      }
+    }
+
+  }
+
+  let auth = firebase.auth()
+
+  auth.onAuthStateChanged(async (user) => {
+    console.log("RUNNING")
+    if (user) {
+    console.log("RUNNING 2")
+    setLogin(true)
+      let isAuthorizedUser = user ? (await user.getIdTokenResult()).claims.admin : false;
+      if (isAuthorizedUser) {
+        setIsAdmin(true)
+      }
+      else {
+        setIsAdmin(false)
+      }
+    }
+    else{
+    console.log("RUNNING 3")
+
+      setLogin(false)
+    }
+
+  })
   return (
     <Router>
       <div>
 
         <CustomNavbar />
         <Switch>
-          <Route exact path="/">
-            <LoginPage />
-
-          </Route>
-          <Route path="/login" component={LoginPage}>
-
-          </Route>
+          <Route render={()=>renderLayout()} exact path="/">
+         </Route>
+          
           <Route path="/registration" component={RegistrationPage}>
 
           </Route>

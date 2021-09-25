@@ -50,7 +50,7 @@ export class LoginPage extends React.Component {
   render() {
     return (
       <>
-        {this.state.loggedin ? this.redirect() : this.getContent()}
+        { this.getContent()}
       </>
     );
   }
@@ -67,9 +67,7 @@ export class LoginPage extends React.Component {
     try {
       await auth.signInWithEmailAndPassword(this.state.email, this.state.password);
       alert("Logged In")
-      this.setState({
-        loggedin:true
-      })
+      
     }
     catch (e) {
       alert(e.message);
