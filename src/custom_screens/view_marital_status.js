@@ -19,13 +19,13 @@ export class ViewMaritalStatusPage extends React.Component {
      async getMaritalStatus()
       {
         let firestore = firebase.firestore();
-        let marital_status = await firestore.collection("marital_statuses").get()
+        let marital_statuses = await firestore.collection("marital_statuses").get()
         let rows=[];
-        marital_status.forEach((marital_status)=>{
+        marital_statuses.forEach((marital_status)=>{
             rows.push(<tr>
                <td>
                   {
-                   marital_status.data()["marital_satus"]
+                   marital_status.data()["marital_status"]
                   }
                </td>
                <td>
