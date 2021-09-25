@@ -21,20 +21,18 @@ export class ViewMaritalStatusPage extends React.Component {
         let firestore = firebase.firestore();
         let marital_status = await firestore.collection("marital_statuses").get()
         let rows=[];
-        marital_status .forEach((marital_status )=>{
+        marital_status.forEach((marital_status)=>{
             rows.push(<tr>
-              
-                <td>
+               <td>
                   {
-                    marital_status .data()["marital_status "]
+                   marital_status.data()["marital_satus"]
                   }
-        </td>
-               
-                 <td>
-                   <Button onClick={(e)=>{this.update(marital_status .id)}}>update</Button>
+               </td>
+               <td>
+                   <Button onClick={(e)=>{this.update(marital_status.id)}}>update</Button>
                    </td>
                    <td>
-                     <Button onClick={(e)=>{this.deleteData(marital_status .id)}}>delete</Button>
+                     <Button onClick={(e)=>{this.deleteData(marital_status.id)}}>delete</Button>
                    </td>
             </tr>)
                 
@@ -47,12 +45,12 @@ export class ViewMaritalStatusPage extends React.Component {
         return(
             <>
          <h2>
-            VIEW marital status 
+            VIEW MARITAL STATUS
         </h2>
         <Table striped bordered hover>
         <thead>
           <tr>
-            <th>Marital status </th>
+            <th>MARITAL STATUS</th>
             
             
     
@@ -71,12 +69,12 @@ export class ViewMaritalStatusPage extends React.Component {
     }
        componentDidMount()
        {
-         this.getMaritalStatus ()
+         this.getMaritalStatus()
        }
        update(id)
        {
          this.props.history.push({
-           pathname:"/edit_marital_status ",
+           pathname:"/edit_marital_status",
            state:{
              id:id
            }
@@ -87,7 +85,7 @@ export class ViewMaritalStatusPage extends React.Component {
           let firestore=firebase.firestore();
           await firestore.collection("marital_statuses").doc(id).delete();
           alert("Deleted");
-          this.getMaritalStatus ();
+          this.getMaritalStatus();
         }
       }
 }

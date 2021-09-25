@@ -6,11 +6,11 @@ import 'firebase/firebase-auth';
 import { Redirect } from 'react-router-dom';
 
 export class EditMaritalStatusPage extends React.Component {
-    async getMaritalStatusPage() {
+    async getMaritalStatus() {
       let firestore = firebase.firestore();
-      let id = this.props.location.marital_status.id;
+      let id = this.props.location.state.id;
       let marital_status = await firestore.collection("marital_statuses").doc(id).get()
-      this.setMaritalStatus({
+      this.setState({
         marital_status: marital_status.data()["marital_status"],
   
       })
@@ -29,14 +29,11 @@ export class EditMaritalStatusPage extends React.Component {
       this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this)
       this.getMaritalStatus = this.getMaritalStatus.bind(this)
-  
-  
-  
     }
     handleChange(event) {
       let data = {};
       data[event.target.name] = event.target.value;
-      this.setMaritalStatus(data);
+      this.setState(data);
     }
     async handleSubmit(event) {
       let firestore = firebase.firestore();
