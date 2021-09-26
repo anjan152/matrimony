@@ -111,6 +111,7 @@ export class RegistrationPage extends React.Component {
     }
     catch (e) {
       alert("Email Unavailable");
+      console.log(e.message)
     }
   }
   redirect() {
