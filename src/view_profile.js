@@ -1,39 +1,41 @@
 import React from "react";
-import { Form, Button, Container, Row, Col, Table } from "react-bootstrap";
+import { Form, Button, Container, Row, Col} from "react-bootstrap";
 import firebase from 'firebase/app';
 import 'firebase/firebase-firestore';
 import 'firebase/firebase-auth';
 import { Redirect } from 'react-router-dom';
 
-export class ViewReligionPage extends React.Component {
+
+
+export class ViewProfilePage extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
       rows: []
     }
-    this.getReligion = this.getReligion.bind(this);
+    this.getProfile = this.getProfile.bind(this);
     this.update = this.update.bind(this);
   };
 
-  async getReligion() {
+  async getProfile() {
     let firestore = firebase.firestore();
-    let religion = await firestore.collection("religions").get()
+    let profile = await firestore.collection("profiles").get()
     let rows = [];
-    religion.forEach((religion) => {
+    profile.forEach((profile) => {
       rows.push(<tr>
 
         <td>
           {
-            religion.data()["religion"]
+            profile.data()["profile"]
           }
         </td>
 
         <td>
-          <Button onClick={(e) => { this.update(religion.id) }}>update</Button>
+          <Button onClick={(e) => { this.update(profile.id) }}>update</Button>
         </td>
         <td>
-          <Button onClick={(e) => { this.deleteData(religion.id) }}>delete</Button>
+          <Button onClick={(e) => { this.deleteData(profile.id) }}>delete</Button>
         </td>
       </tr>)
 
@@ -47,23 +49,15 @@ export class ViewReligionPage extends React.Component {
         <h2>
           VIEW RELIGION
         </h2>
-        <Table striped bordered hover>
-          <thead>
-            <tr>
-              <th>RELIGION</th>
-
-
-
-              <th>ACTION1</th>
-              <th>ACTION2</th>
-            </tr>
-          </thead>
-          <tbody>
-            {
-              this.state.rows
-            }
-          </tbody>
-        </Table>
+        <Container>
+          <Row className="d-flex justify-content-center align-items-center " >
+            <Col lg={6}>
+            </Col>
+          </Row>
+        </Container>
+            
+        
+         
       </>
     );
   }
@@ -72,7 +66,7 @@ export class ViewReligionPage extends React.Component {
   }
   update(id) {
     this.props.history.push({
-      pathname: "/edit_religion",
+      pathname: "/registration",
       state: {
         id: id
       }
@@ -81,9 +75,9 @@ export class ViewReligionPage extends React.Component {
   async deleteData(id) {
     if (window.confirm("Are you sure?")) {
       let firestore = firebase.firestore();
-      await firestore.collection("religions").doc(id).delete();
+      await firestore.collection("profiles").doc(id).delete();
       alert("Deleted");
-      this.getReligion();
+      this.getProfile();
     }
   }
 }

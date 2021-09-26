@@ -102,6 +102,10 @@ export class CustomNavbar extends React.Component {
       <li class="nav-item">
         <a href="/search" class="nav-link">Search</a>
       </li>
+      
+      <li class="nav-item">
+        <a href="/view_profile" class="nav-link">view profile</a>
+      </li>
     </>
 
     return (

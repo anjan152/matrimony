@@ -1,13 +1,26 @@
 import React from "react";
-import {
-  Form, Button, Container, Row, Col, Education
-} from "react-bootstrap";
+import { Form, Button, Container, Row, Col, Education} from "react-bootstrap";
 import firebase from 'firebase/app';
 import 'firebase/firebase-firestore';
 import 'firebase/firebase-auth';
 
 
 export class SearchPage extends React.Component {
+  search()
+  {
+    this.props.history.push({
+      pathname:"/view_profiles",
+      state:{
+        religion_id:this.state.religon_id,
+        education_id:this.state.education_id,
+        district_id:this.state.district_id,
+        state_id:this.state.state_id,
+        job_id:this.state.job_id,
+        income_id:this.state.income_id
+
+      }
+    })
+  }
   componentDidMount()
   {
     this.setSelectBoxes()
