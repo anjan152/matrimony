@@ -3,7 +3,7 @@ import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import firebase from 'firebase/app';
 import 'firebase/firebase-firestore';
 import 'firebase/firebase-auth';
-import { Link ,Redirect} from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 export class CustomNavbar extends React.Component {
 
@@ -102,7 +102,7 @@ export class CustomNavbar extends React.Component {
       <li class="nav-item">
         <a href="/search" class="nav-link">Search</a>
       </li>
-      
+
       <li class="nav-item">
         <a href="/view_profile" class="nav-link">view profile</a>
       </li>
@@ -124,7 +124,7 @@ export class CustomNavbar extends React.Component {
                 this.state.isLoggedIn ? "" : <Redirect to="/" />
               }
               <li class="nav-item">
-                <a href="#" onClick={()=>firebase.auth().signOut()} class="nav-link">LOGOUT</a>
+                <a href="#" onClick={() => firebase.auth().signOut()} class="nav-link">LOGOUT</a>
               </li>
             </ul>
           </div>
