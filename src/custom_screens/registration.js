@@ -61,6 +61,7 @@ export class RegistrationPage extends React.Component {
       job: [],
       income: [],
       photo: '',
+      gender:'male',
       loggedin: false
     };
     this.handleChange = this.handleChange.bind(this);
@@ -105,6 +106,7 @@ export class RegistrationPage extends React.Component {
         income_id: this.state.income_id,
         phone_number: this.state.phone_number,
         email: this.state.email,
+        gender: this.state.gender
         // photo: url
       });
       this.setState({ loggedin: true })
@@ -138,54 +140,63 @@ export class RegistrationPage extends React.Component {
                   <Form.Label>
                     EMAIL
                   </Form.Label>
-                  <Form.Control type="text" name="email" value={this.state.email} onChange={this.handleChange} className="form-control" />
+                  <Form.Control required type="text" name="email" value={this.state.email} onChange={this.handleChange} className="form-control" />
                 </Form.Group>
                 <Form.Group>
                   <Form.Label>
                     PASSWORD
                   </Form.Label>
-                  <Form.Control type="text" name="password" value={this.state.password} onChange={this.handleChange} className="form-control" />
+                  <Form.Control required type="text" name="password" value={this.state.password} onChange={this.handleChange} className="form-control" />
                 </Form.Group>
                 <Form.Group>
                   <Form.Label>
                     NAME
                   </Form.Label>
-                  <Form.Control type="text" name="name" value={this.state.name} onChange={this.handleChange} className="form-control" />
+                  <Form.Control required type="text" name="name" value={this.state.name} onChange={this.handleChange} className="form-control" />
                 </Form.Group>
                 <Form.Group>
                   <Form.Label>
                     DATE OF BIRTH
                   </Form.Label>
 
-                  <Form.Control type="date" name="date_of_birth" value={this.state.date_of_birth} onChange={this.handleChange} className="form-control" />
+                  <Form.Control required type="date" name="date_of_birth" value={this.state.date_of_birth} onChange={this.handleChange} className="form-control" />
                 </Form.Group>
                 
-
+                <Form.Group>
+                  <Form.Label>
+                    Gender
+                  </Form.Label>
+                  <Form.Control required as="select" name="gender" value={this.state.gender} onChange={this.handleChange}  >
+                    <option value='male'>Male</option>
+                    <option value='female'>Female</option>
+                    <option value='transgender'>Transgender</option>
+                  </Form.Control>
+                </Form.Group>
                
                 <Form.Group>
                   <Form.Label>
                     PLACE
                   </Form.Label>
-                  <Form.Control type="text" name="place" value={this.state.place} onChange={this.handleChange} className="form-control" />
+                  <Form.Control required type="text" name="place" value={this.state.place} onChange={this.handleChange} className="form-control" />
                 </Form.Group>
                 <Form.Group>
                   <Form.Label>
                     PHONE NUMBER
                   </Form.Label>
-                  <Form.Control type="text" name="phone_number" value={this.state.phone_number} onChange={this.handleChange} className="form-control" />
+                  <Form.Control required type="number" minlength="10" maxLength="10" name="phone_number" value={this.state.phone_number} onChange={this.handleChange} className="form-control" />
                 </Form.Group>
                 <Form.Group>
                   <Form.Label>
                     PINCODE
                   </Form.Label>
-                  <Form.Control type="text" name="pincode" value={this.state.pincode} onChange={this.handleChange} className="form-control" />
+                  <Form.Control required type="text" name="pincode" value={this.state.pincode} onChange={this.handleChange} className="form-control" />
                 </Form.Group>
 
                 <Form.Group>
                   <Form.Label>
                     RELIGION
                   </Form.Label>
-                  <Form.Control as="select" name="religion_id" value={this.state.religion_id} onChange={this.handleChange}  >
+                  <Form.Control required as="select" name="religion_id" value={this.state.religion_id} onChange={this.handleChange}  >
                     <option value=''> </option>
                     {this.state.religion}
                   </Form.Control>
@@ -194,7 +205,7 @@ export class RegistrationPage extends React.Component {
                   <Form.Label>
                     EDUCATION
                   </Form.Label>
-                  <Form.Control as="select" name="education_id" value={this.state.education_id} onChange={this.handleChange}  >
+                  <Form.Control required as="select" name="education_id" value={this.state.education_id} onChange={this.handleChange}  >
                     <option value=''></option>
                     {this.state.education}
                   </Form.Control>
@@ -203,7 +214,7 @@ export class RegistrationPage extends React.Component {
                   <Form.Label>
                     DISTRICT
                   </Form.Label>
-                  <Form.Control as="select" name="district_id" value={this.state.district_id} onChange={this.handleChange}  >
+                  <Form.Control required as="select" name="district_id" value={this.state.district_id} onChange={this.handleChange}  >
                     <option value=''></option>
                     {this.state.district}
                   </Form.Control>
@@ -212,7 +223,7 @@ export class RegistrationPage extends React.Component {
                   <Form.Label>
                     STATE
                   </Form.Label>
-                  <Form.Control as="select" name="state_id" value={this.state.state_id} onChange={this.handleChange} >
+                  <Form.Control required as="select" name="state_id" value={this.state.state_id} onChange={this.handleChange} >
                     <option value=''></option>
                     {this.state.state}
                   </Form.Control>
@@ -221,7 +232,7 @@ export class RegistrationPage extends React.Component {
                   <Form.Label>
                     JOB
                   </Form.Label>
-                  <Form.Control as="select" name="job_id" value={this.state.job_id} onChange={this.handleChange}  >
+                  <Form.Control required as="select" name="job_id" value={this.state.job_id} onChange={this.handleChange}  >
 
                     <option value=''></option>
                     {this.state.job}
@@ -232,20 +243,13 @@ export class RegistrationPage extends React.Component {
 
                     INCOME
                   </Form.Label>
-                  <Form.Control as="select" name="income_id" value={this.state.income_id} onChange={this.handleChange}  >
+                  <Form.Control  required as="select" name="income_id" value={this.state.income_id} onChange={this.handleChange}  >
                     <option value=''></option>
                     {this.state.income}
                   </Form.Control>
                 </Form.Group>
 
-                {/* <Form.Group>
-                  <Form.Label>
-
-                    PHOTO
-                  </Form.Label>
-                  <Form.Control type="file" name="photo" value={this.state.photo} onChange={this.handleChange} className="form-control" />
                 
-                </Form.Group> */}
                 <Form.Group>
                   <Button type="submit" className="btn btn-primary"> REGISTER</Button>
                 </Form.Group>

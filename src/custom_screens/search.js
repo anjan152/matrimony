@@ -16,7 +16,8 @@ export class SearchPage extends React.Component {
         district_id: this.state.district_id,
         state_id: this.state.state_id,
         job_id: this.state.job_id,
-        income_id: this.state.income_id
+        income_id: this.state.income_id,
+        gender: this.state.gender
 
       }
     })
@@ -59,6 +60,7 @@ export class SearchPage extends React.Component {
       job_id: '',
       income_id: '',
       state: '',
+      gender: 'male',
       religion: [],
       education: [],
       district: [],
@@ -80,7 +82,7 @@ export class SearchPage extends React.Component {
     let auth = firebase.auth();
 
     try {
-     this.search()
+      this.search()
     }
     catch (e) {
       alert(e.message);
@@ -92,42 +94,53 @@ export class SearchPage extends React.Component {
       <>
         <Container>
           <Row className="d-flex justify-content-center align-items-center " >
-                  <Col lg={6}>  <CustomNavbar />
+            <Col lg={6}>  <CustomNavbar />
 
               <Form id="form" onSubmit={this.handleSubmit}>
                 <Form.Group>
-                  <Form.Control as="select" name="religion_id" value={this.state.religion_id} onChange={this.handleChange}  >
+                  <Form.Label>
+                    Gender
+                  </Form.Label>
+                  <Form.Control required as="select" name="gender" value={this.state.gender} onChange={this.handleChange}  >
+                    <option value='male'>Male</option>
+                    <option value='female'>Female</option>
+                    <option value='transgender'>Transgender</option>
+                  </Form.Control>
+                </Form.Group>
+
+                <Form.Group>
+                  <Form.Control required as="select" name="religion_id" value={this.state.religion_id} onChange={this.handleChange}  >
                     <option value=''>religion </option>
                     {this.state.religion}
                   </Form.Control>
                 </Form.Group>
                 <Form.Group>
-                  <Form.Control as="select" name="education_id" value={this.state.education_id} onChange={this.handleChange}  >
+                  <Form.Control required as="select" name="education_id" value={this.state.education_id} onChange={this.handleChange}  >
                     <option value=''>education</option>
                     {this.state.education}
                   </Form.Control>
                 </Form.Group>
                 <Form.Group>
-                  <Form.Control as="select" name="district_id" value={this.state.district_id} onChange={this.handleChange}  >
+                  <Form.Control required as="select" name="district_id" value={this.state.district_id} onChange={this.handleChange}  >
                     <option value=''>district</option>
                     {this.state.district}
                   </Form.Control>
                 </Form.Group>
                 <Form.Group>
-                  <Form.Control as="select" name="state_id" value={this.state.state_id} onChange={this.handleChange} >
+                  <Form.Control required as="select" name="state_id" value={this.state.state_id} onChange={this.handleChange} >
                     <option value=''>state</option>
                     {this.state.state}
                   </Form.Control>
                 </Form.Group>
                 <Form.Group>
-                  <Form.Control as="select" name="job_id" value={this.state.job_id} onChange={this.handleChange}  >
+                  <Form.Control required as="select" name="job_id" value={this.state.job_id} onChange={this.handleChange}  >
 
                     <option value=''>job</option>
                     {this.state.job}
                   </Form.Control>
                 </Form.Group>
                 <Form.Group>
-                  <Form.Control as="select" name="income_id" value={this.state.income_id} onChange={this.handleChange}  >
+                  <Form.Control required as="select" name="income_id" value={this.state.income_id} onChange={this.handleChange}  >
                     <option value=''>income</option>
                     {this.state.income}
                   </Form.Control>
