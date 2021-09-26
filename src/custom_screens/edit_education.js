@@ -3,7 +3,10 @@ import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import firebase from 'firebase/app';
 import 'firebase/firebase-firestore';
 import 'firebase/firebase-auth';
+       import { CustomNavbar } from "./custom_nav"
+
 import { Redirect } from 'react-router-dom';
+
 
 
 
@@ -68,7 +71,8 @@ export class EditEducationPage extends React.Component {
       <>
         <Container>
           <Row className="d-flex justify-content-center align-items-center " >
-            <Col lg={6}>
+                  <Col lg={6}>  <CustomNavbar />
+
 
               <Form id="form" onSubmit={this.handleSubmit}>
                 <Form.Group>

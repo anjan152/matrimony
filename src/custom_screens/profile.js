@@ -8,7 +8,7 @@ import 'firebase/firebase-auth';
 import { Redirect } from 'react-router-dom';
 
 
-export class RegistrationPage extends React.Component {
+export class ProfilePage extends React.Component {
   componentDidMount() {
     this.setSelectBoxes()
   }
@@ -45,22 +45,28 @@ export class RegistrationPage extends React.Component {
       password: '',
       name: '',
       date_of_birth: '',
+      address: '',
+      house_name: '',
       place: '',
       pincode: '',
+      district: '',
+      education: '',
+      job: '',
+      income: '',
+      religion: '',
       religon_id: '',
       education_id: '',
       district_id: '',
       state_id: '',
       job_id: '',
       income_id: '',
-      phone_number: '',
+      state: '',
       religion: [],
       education: [],
       district: [],
       state: [],
       job: [],
       income: [],
-      photo: '',
       loggedin: false
     };
     this.handleChange = this.handleChange.bind(this);
@@ -72,13 +78,7 @@ export class RegistrationPage extends React.Component {
   }
   handleChange(event) {
     let data = {};
-    if(event.target.name == "photo"){
-      // data[event.target.name] = event.target.files[0];
-
-    }
-    else{
-      data[event.target.name] = event.target.value;
-    }
+    data[event.target.name] = event.target.value;
     this.setState(data);
   }
   async handleSubmit(event) {
@@ -86,13 +86,9 @@ export class RegistrationPage extends React.Component {
 
     event.preventDefault();
     let auth = firebase.auth();
-
+    let user = auth.currentUser;
     try {
-      let user = await auth.createUserWithEmailAndPassword(this.state.email, this.state.password);
-      // let storage = firebase.storage();
-      // let ref =await storage.ref().child("photos/"+ this.state.email).put(this.state.photo);
-      // let url = await ref.ref.getDownloadURL()
-      await firestore.collection("registration").doc(user.user.uid).set({
+      await firestore.collection("registration").doc(user.uid).update({
         name: this.state.name,
         date_of_birth: this.state.date_of_birth,
         place: this.state.place,
@@ -102,15 +98,13 @@ export class RegistrationPage extends React.Component {
         district_id: this.state.district_id,
         state_id: this.state.state_id,
         job_id: this.state.job_id,
-        income_id: this.state.income_id,
-        phone_number: this.state.phone_number,
-        email: this.state.email,
-        // photo: url
+        income_id: this.state.income_id
       });
+      alert("registred")
       this.setState({ loggedin: true })
     }
     catch (e) {
-      alert("Email Unavailable");
+      alert(e.message);
     }
   }
   redirect() {
@@ -127,10 +121,12 @@ export class RegistrationPage extends React.Component {
   getContent() {
     return (
       <>
-        <Container className="my-5 py-5">
+        <Container className="mb-5">
+        <CustomNavbar/>
+
           <Row className="d-flex justify-content-center align-items-center " >
                   <Col lg={6}>  
-                  <h5>Registration</h5>
+                  <h5>Profile</h5>
 
               <Form id="form" onSubmit={this.handleSubmit}>
                 <Form.Group>
@@ -236,21 +232,11 @@ export class RegistrationPage extends React.Component {
                     {this.state.income}
                   </Form.Control>
                 </Form.Group>
-
-                {/* <Form.Group>
-                  <Form.Label>
-
-                    PHOTO
-                  </Form.Label>
-                  <Form.Control type="file" name="photo" value={this.state.photo} onChange={this.handleChange} className="form-control" />
-                
-                </Form.Group> */}
                 <Form.Group>
-                  <Button type="submit" className="btn btn-primary"> REGISTER</Button>
+                  <Button type="submit" className="btn btn-primary"> Update</Button>
                 </Form.Group>
 
               </Form>
-            <a href="/">Return to login</a>
 
             </Col>
           </Row>

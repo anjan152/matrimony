@@ -5,7 +5,10 @@ import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import firebase from 'firebase/app';
 import 'firebase/firebase-firestore';
 import 'firebase/firebase-auth';
+       import { CustomNavbar } from "./custom_nav"
+
 import { Redirect } from 'react-router-dom';
+
 
 
 export class LoginPage extends React.Component {
@@ -19,13 +22,13 @@ export class LoginPage extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.getContent = this.getContent.bind(this);
-    this.redirect = this.redirect.bind(this);
   }
   getContent(){
     return (<>
-      <Container>
+      <Container className="my-5">
         <Row>
-          <Col>
+          <Col lg="6">
+          <h3 className="mb-4">Login</h3>
             <Form onSubmit={this.handleSubmit}>
               <Form.Group>
                 <Form.Label> email</Form.Label>
@@ -37,15 +40,15 @@ export class LoginPage extends React.Component {
                 <Button type="submit">Submit</Button>
               </Form.Group>
             </Form>
+
+            <a href="/registration">Register Now!</a>
           </Col>
         </Row>
       </Container>
 
     </>)
   }
-  redirect() {
-    return <Redirect to='/search' />;
-  }
+  
 
   render() {
     return (

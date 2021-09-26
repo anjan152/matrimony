@@ -3,7 +3,10 @@ import { Form, Button, Container, Row, Col,Table } from "react-bootstrap";
 import firebase from 'firebase/app';
 import 'firebase/firebase-firestore';
 import 'firebase/firebase-auth';
+       import { CustomNavbar } from "./custom_nav"
+
 import { Redirect } from 'react-router-dom';
+
 
 
 export class ViewDistrictPage extends React.Component {

@@ -30,8 +30,8 @@ import { ViewReligionPage } from "./custom_screens/view_religion"
 import { AddMaritalStatusPage } from "./custom_screens/add_marital_status"
 import { EditMaritalStatusPage } from "./custom_screens/edit_marital_status"
 import { ViewMaritalStatusPage } from "./custom_screens/view_marital_status"
-import { ViewProfilePage } from "./custom_screens/view_profile"
-import { CustomNavbar } from "./custom_screens/custom_nav"
+import { ProfilePage } from "./custom_screens/profile"
+import { ViewProfilePage } from "./custom_screens/view_profiles"
 import firebase from 'firebase/app';
 import 'firebase/firebase-firestore';
 import 'firebase/firebase-auth';
@@ -54,11 +54,11 @@ function App() {
     }
     else {
       if(isAdmin){
-        return <ViewDistrictPage></ViewDistrictPage>
+        return <AddDistrictPage></AddDistrictPage>
 
       }
       else{
-        return <SearchPage></SearchPage>
+        return <ProfilePage></ProfilePage>
 
       }
     }
@@ -91,7 +91,6 @@ function App() {
     <Router>
       <div>
 
-        <CustomNavbar />
         <Switch>
           <Route render={()=>renderLayout()} exact path="/">
          </Route>
@@ -166,9 +165,13 @@ function App() {
 
           </Route>
           
-          <Route path="/view_profile" component={ViewProfilePage}>
+          <Route path="/view_profiles" component={ViewProfilePage}>
 
           </Route>
+
+          <Route path="/profile" component={ProfilePage}>
+
+</Route>
 
 
 
