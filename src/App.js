@@ -32,6 +32,7 @@ import { EditMaritalStatusPage } from "./custom_screens/edit_marital_status"
 import { ViewMaritalStatusPage } from "./custom_screens/view_marital_status"
 import { ProfilePage } from "./custom_screens/profile"
 import { ViewProfilePage } from "./custom_screens/view_profiles"
+import { HomePage } from "./custom_screens/home"
 import firebase from 'firebase/app';
 import 'firebase/firebase-firestore';
 import 'firebase/firebase-auth';
@@ -50,7 +51,7 @@ function App() {
       return <> </>;
     }
     else if (loggedIn === false) {
-      return <LoginPage></LoginPage>
+      return <HomePage></HomePage>
     }
     else {
       if(isAdmin){
@@ -171,7 +172,12 @@ function App() {
 
           <Route path="/profile" component={ProfilePage}>
 
-</Route>
+         </Route>
+
+
+          <Route path="/home" component={HomePage}>
+
+        </Route>
 
 
 
