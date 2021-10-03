@@ -51,7 +51,7 @@ function App() {
       return <> </>;
     }
     else if (loggedIn === false) {
-      return <HomePage></HomePage>
+      return <LoginPage></LoginPage>
     }
     else {
       if(isAdmin){
@@ -93,7 +93,10 @@ function App() {
       <div>
 
         <Switch>
-          <Route render={()=>renderLayout()} exact path="/">
+          <Route component={HomePage} path="/">
+         </Route>
+
+         <Route render={()=>renderLayout()} exact path="/home">
          </Route>
           
           <Route path="/registration" component={RegistrationPage}>
