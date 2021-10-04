@@ -93,10 +93,10 @@ function App() {
       <div>
 
         <Switch>
-          <Route component={HomePage} path="/">
+          <Route component={HomePage} exact path="/">
          </Route>
 
-         <Route render={()=>renderLayout()} exact path="/home">
+         <Route render={()=>renderLayout()} path="/home">
          </Route>
           
           <Route path="/registration" component={RegistrationPage}>
