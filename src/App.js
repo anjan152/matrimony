@@ -178,9 +178,7 @@ function App() {
          </Route>
 
 
-          <Route path="/home" component={HomePage}>
-
-        </Route>
+    
 
 
 
